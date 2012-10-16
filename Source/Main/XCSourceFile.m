@@ -155,9 +155,9 @@
 }
 
 - (NSString*) pathRelativeToProjectRoot {
-	if (_path) {
-		return _path;
-	}
+//	if (_path) {
+//		return _path;
+//	}
     if ([self.sourceTree isEqualToString:@"SOURCE_ROOT"]) {
         return _name;
     }
