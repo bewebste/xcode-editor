@@ -40,7 +40,7 @@
     {
         _filePath = [filePath copy];
         _dataStore = [[NSMutableDictionary alloc] initWithContentsOfFile:[_filePath stringByAppendingPathComponent:@"project.pbxproj"]];
-
+		_memberKeyToGroupKey = [[NSMutableDictionary alloc] init];
         if (!_dataStore)
         {
             [NSException raise:NSInvalidArgumentException format:@"Project file not found at file path %@", _filePath];
@@ -156,19 +156,26 @@
 /* ====================================================================================================================================== */
 #pragma mark Groups
 
+- (void)createAllGroups
+{
+	if (_allGroupsCreated)
+		return;
+    [[_dataStore objectForKey:@"objects"] enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSDictionary* obj, BOOL* stop)
+	 {
+		 
+		 if ([[obj valueForKey:@"isa"] asMemberType] == PBXGroupType || [[obj valueForKeyPath:@"isa"] asMemberType] == PBXVariantGroupType)
+		 {
+			 [self groupWithKey:key];
+		 }
+	 }];
+	_allGroupsCreated = YES;
+}
+
 - (NSArray*)groups
 {
-
-    NSMutableArray* results = [[NSMutableArray alloc] init];
-    [[_dataStore objectForKey:@"objects"] enumerateKeysAndObjectsUsingBlock:^(NSString* key, NSDictionary* obj, BOOL* stop)
-    {
-
-        if ([[obj valueForKey:@"isa"] asMemberType] == PBXGroupType || [[obj valueForKeyPath:@"isa"] asMemberType] == PBXVariantGroupType)
-        {
-            [results addObject:[self groupWithKey:key]];
-        }
-    }];
-    return XCAutorelease(results)}
+	[self createAllGroups];
+	return [_groups allValues];
+}
 
 //TODO: Optimize this implementation.
 - (XCGroup*)rootGroup
@@ -202,6 +209,14 @@
 
     return XCAutorelease([results copy])}
 
+- (void)mapMembersInGroup:(XCGroup*)group
+{
+	for (NSString* childKey in [group children])
+	{
+		[_memberKeyToGroupKey setObject:[group key] forKey:childKey];
+	}
+}
+
 - (XCGroup*)groupWithKey:(NSString*)key
 {
     XCGroup* group = [_groups objectForKey:key];
@@ -220,6 +235,7 @@
         XCGroup* group = [XCGroup groupWithProject:self key:key alias:name path:path children:children sourceTreeType:sourceTreeType];
 
         [_groups setObject:group forKey:key];
+		[self mapMembersInGroup:group];
 
         return group;
     }
@@ -228,13 +244,8 @@
 
 - (XCGroup*)groupForGroupMemberWithKey:(NSString*)key
 {
-    for (XCGroup* group in [self groups])
-    {
-        if ([group memberWithKey:key])
-        {
-            return XCRetainAutorelease(group)}
-    }
-    return nil;
+	[self createAllGroups]; //trigger creation of groups if necessary
+	return [self groupWithKey:[_memberKeyToGroupKey objectForKey:key]];
 }
 
 - (XCGroup*)groupWithSourceFile:(XCSourceFile*)sourceFile

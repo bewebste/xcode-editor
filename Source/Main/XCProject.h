@@ -37,6 +37,8 @@ __attribute__((__visibility__("default"))) @interface XCProject : NSObject
 
     NSMutableDictionary* _groups;
     NSMutableDictionary* _configurations;
+	NSMutableDictionary* _memberKeyToGroupKey;
+	BOOL _allGroupsCreated;
 
     NSString* _defaultConfigurationName;
     NSString* _rootObjectKey;
