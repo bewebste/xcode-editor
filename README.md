@@ -173,6 +173,7 @@ If you're using the API shoot me an email and tell me what you're doing with it.
 * Chris Ross of Hidden Memory (http://www.hiddenmemory.co.uk/)
 * Paul Taykalo
 * Vladislav Alekseev 
+* Felix Schneider - bug fixes. 
 
 Thanks! 
 
@@ -180,6 +181,6 @@ Thanks!
 
 Apache License, Version 2.0, January 2004, http://www.apache.org/licenses/
 
-* © 2011 - 2012 jasper blues
+* © 2011 - 2012 Jasper Blues and contributors.
 
 
