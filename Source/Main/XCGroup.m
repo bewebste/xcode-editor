@@ -65,18 +65,18 @@
 @synthesize key = _key;
 @synthesize children = _children;
 @synthesize alias = _alias;
-
+@synthesize sourceTreeType = _sourceTreeType;
 
 /* =========================================================== Class Methods ============================================================ */
 + (XCGroup*)groupWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path
-                    children:(NSArray*)children
+children:(NSArray*)children sourceTreeType:(XcodeSourceTreeType)sourceTreeType
 {
 
-    return XCAutorelease([[XCGroup alloc] initWithProject:project key:key alias:alias path:path children:children])}
+    return XCAutorelease([[XCGroup alloc] initWithProject:project key:key alias:alias path:path children:children sourceTreeType:sourceTreeType])}
 
 /* ============================================================ Initializers ============================================================ */
 - (id)initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path
-             children:(NSArray*)children
+children:(NSArray*)children sourceTreeType:(XcodeSourceTreeType)sourceTreeType
 {
     self = [super init];
     if (self)
@@ -86,6 +86,7 @@
         _alias = [alias copy];
         _pathRelativeToParent = [path copy];
         _children = [children mutableCopy];
+		_sourceTreeType = sourceTreeType;
     }
     return self;
 }
@@ -247,7 +248,7 @@
         }
     }
 
-    XCGroup* group = [[XCGroup alloc] initWithProject:_project key:groupKey alias:nil path:path children:nil];
+    XCGroup* group = [[XCGroup alloc] initWithProject:_project key:groupKey alias:nil path:path children:nil sourceTreeType:XcodeSourceTreeRelativeToProject];
     NSDictionary* groupDict = [group asDictionary];
 
     [[_project objects] setObject:groupDict forKey:groupKey];
@@ -493,28 +494,34 @@
 {
     if (_pathRelativeToProjectRoot == nil)
     {
-        NSMutableArray* pathComponents = [[NSMutableArray alloc] init];
-        XCGroup* group = nil;
-        NSString* key = [_key copy];
+		if (self.sourceTreeType == XcodeSourceTreeRelativeToProject)
+			_pathRelativeToProjectRoot = [_pathRelativeToParent copy];
+		else
+		{
+			NSMutableArray* pathComponents = [[NSMutableArray alloc] init];
+			XCGroup* group = nil;
+			NSString* key = [_key copy];
 
-        while ((group = [_project groupForGroupMemberWithKey:key]) != nil && !([group pathRelativeToParent] == nil))
-        {
-            [pathComponents addObject:[group pathRelativeToParent]];
-            id old = key;
-            key = [[group key] copy];
-            XCRelease(old)
-        }
+			while ((group = [_project groupForGroupMemberWithKey:key]) != nil)
+			{
+				if ([group pathRelativeToParent] != nil)
+					[pathComponents addObject:[group pathRelativeToParent]];
+				id old = key;
+				key = [[group key] copy];
+				XCRelease(old)
+			}
 
-        NSMutableString* fullPath = [[NSMutableString alloc] init];
-        for (NSInteger i = (NSInteger) [pathComponents count] - 1; i >= 0; i--)
-        {
-            [fullPath appendFormat:@"%@/", [pathComponents objectAtIndex:i]];
-        }
-        _pathRelativeToProjectRoot = [[fullPath stringByAppendingPathComponent:_pathRelativeToParent] copy];
+			NSMutableString* fullPath = [[NSMutableString alloc] init];
+			for (NSInteger i = (NSInteger) [pathComponents count] - 1; i >= 0; i--)
+			{
+				[fullPath appendFormat:@"%@/", [pathComponents objectAtIndex:i]];
+			}
+			_pathRelativeToProjectRoot = [[fullPath stringByAppendingPathComponent:_pathRelativeToParent] copy];
 
-        XCRelease(fullPath)
-        XCRelease(pathComponents)
-        XCRelease(key)
+			XCRelease(fullPath)
+			XCRelease(pathComponents)
+			XCRelease(key)
+		}
     }
     return _pathRelativeToProjectRoot;
 }
@@ -623,7 +630,7 @@
         uniquer = [uniquer stringByAppendingString:productName];
     }
     NSString* productKey = [[XCKeyBuilder forItemNamed:[NSString stringWithFormat:@"%@-Products", uniquer]] build];
-    XCGroup* productsGroup = [XCGroup groupWithProject:_project key:productKey alias:@"Products" path:nil children:children];
+    XCGroup* productsGroup = [XCGroup groupWithProject:_project key:productKey alias:@"Products" path:nil children:children sourceTreeType:XcodeSourceTreeRelativeToProject];
     [[_project objects] setObject:[productsGroup asDictionary] forKey:productKey];
     return productKey;
 }

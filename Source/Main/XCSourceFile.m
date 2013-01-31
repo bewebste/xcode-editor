@@ -16,6 +16,7 @@
 #import "Utils/XCKeyBuilder.h"
 #import "Utils/XCMemoryUtils.h"
 #import "XCGroup.h"
+#import "XcodeSourceTreeType.h"
 
 @implementation XCSourceFile
 
@@ -172,15 +173,33 @@
     return PBXFileReferenceType;
 }
 
+- (XcodeSourceTreeType)sourceTreeType
+{
+	return [_sourceTree asSourceTreeType];
+}
+
 - (NSString*)displayName
 {
     return _name;
 }
 
+- (NSString*)parentPath
+{
+	switch ([self sourceTreeType]) {
+		case XcodeSourceTreeRelativeToProject:
+			return @"/";
+		case XcodeSourceTreeRelativeToGroup:
+			return [[_project groupForGroupMemberWithKey:_key] pathRelativeToProjectRoot];
+		default: //Haven't implemented the rest yet, they're all a bit trickier
+			return @"/";
+			break;
+	}
+}
+
 - (NSString*)pathRelativeToProjectRoot
 {
-    NSString* parentPath = [[_project groupForGroupMemberWithKey:_key] pathRelativeToProjectRoot];
-    NSString* result = [parentPath stringByAppendingPathComponent:_name];
+    NSString* parentPath = [self parentPath];
+    NSString* result = [parentPath stringByAppendingPathComponent:_path];
     return result;
 }
 

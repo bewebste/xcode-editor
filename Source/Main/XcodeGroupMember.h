@@ -12,6 +12,7 @@
 
 
 #import "XcodeMemberType.h"
+#import "XcodeSourceTreeType.h"
 
 @protocol XcodeGroupMember<NSObject>
 
@@ -25,4 +26,7 @@
 * Group members can either be other groups (PBXGroup) or source files (PBXFileReference).
 */
 - (XcodeMemberType) groupMemberType;
+
+- (XcodeSourceTreeType) sourceTreeType;
+
 @end

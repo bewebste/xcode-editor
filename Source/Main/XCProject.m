@@ -18,6 +18,7 @@
 #import "XCTarget.h"
 #import "XCFileOperationQueue.h"
 #import "XCBuildConfiguration.h"
+#import "XcodeSourceTreeType.h"
 #import "Utils/XCMemoryUtils.h"
 
 
@@ -215,7 +216,8 @@
         NSString* name = [obj valueForKey:@"name"];
         NSString* path = [obj valueForKey:@"path"];
         NSArray* children = [obj valueForKey:@"children"];
-        XCGroup* group = [XCGroup groupWithProject:self key:key alias:name path:path children:children];
+		XcodeSourceTreeType sourceTreeType = [[obj valueForKey:@"sourceTree"] asSourceTreeType];;
+        XCGroup* group = [XCGroup groupWithProject:self key:key alias:name path:path children:children sourceTreeType:sourceTreeType];
 
         [_groups setObject:group forKey:key];
 

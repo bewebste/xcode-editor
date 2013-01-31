@@ -32,6 +32,7 @@
     NSString* _pathRelativeToParent;
     NSString* _key;
     NSString* _alias;
+	XcodeSourceTreeType _sourceTreeType;
 
 
 @private
@@ -70,6 +71,11 @@
 */
 @property(nonatomic, strong, readonly) NSMutableArray* children;
 
+/**
+ * The type of parent object for the group, used for resolving relative paths.
+*/
+
+@property(nonatomic, assign, readonly) XcodeSourceTreeType sourceTreeType;
 
 /* ================================================================================================================== */
 #pragma mark Initializers
@@ -78,10 +84,11 @@
         key:(NSString*)key
         alias:(NSString*)alias
         path:(NSString*)path
-        children:(NSArray*)children;
+        children:(NSArray*)children
+        sourceTreeType:(XcodeSourceTreeType)sourceTreeType;
 
 - (id) initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path
-        children:(NSArray*)children;
+        children:(NSArray*)children sourceTreeType:(XcodeSourceTreeType)sourceTreeType;
 
 /* ================================================================================================================== */
 #pragma mark Parent group
