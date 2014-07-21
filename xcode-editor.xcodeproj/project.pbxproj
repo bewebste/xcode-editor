@@ -75,18 +75,21 @@
 		6BE4B285147E6B610059E45F /* XCFrameworkDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE4B285147E6B610059E45E /* XCFrameworkDefinition.m */; };
 		6BE4B285147E6B610059E460 /* XCFrameworkDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE4B285147E6B610059E45E /* XCFrameworkDefinition.m */; };
 		6BE4B285147E6B610059E462 /* XCFrameworkDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE4B285147E6B610059E461 /* XCFrameworkDefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6BE9748E15AF0B31004472E2 /* OCLogTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE9748D15AF0B31004472E2 /* OCLogTemplate.h */; };
+		6BE9748E15AF0B31004472E2 /* OCLogTemplate.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE9748D15AF0B31004472E2 /* OCLogTemplate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA7980A661B2FF20A86F3FD0 /* ClassDefinitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7984143FEC00A651B12D88 /* ClassDefinitionTests.m */; };
 		BA7982BD513A2B1FDD22E03B /* XCBuildConfiguration.h in Copy Test Resources to /tmp */ = {isa = PBXBuildFile; fileRef = BA7989BBB424E01D41346F4F /* XCBuildConfiguration.h */; };
-		BA79845028C69EFC6F98AFF5 /* XcodeEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BA79848F199FA8B3F3DFA16E /* XcodeEditor.h */; };
+		BA79845028C69EFC6F98AFF5 /* XcodeEditor.h in Headers */ = {isa = PBXBuildFile; fileRef = BA79848F199FA8B3F3DFA16E /* XcodeEditor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA7985429DE30BAC636DBE08 /* GroupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7988A76A232B877E5CDDEB /* GroupTests.m */; };
 		BA7985B8636EDA34C738B527 /* TargetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA798EE31696E3108277FA54 /* TargetTests.m */; };
 		BA79870CE0CE7D18D3EAE42E /* ProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA798B5E16A7C0A6B792CBB9 /* ProjectTests.m */; };
 		BA798A427D45F5EB9928579C /* SubProjectDefinitionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7982B513E841FFAC2A7B2C /* SubProjectDefinitionTests.m */; };
 		BA798B0394D0BCC02CD07FCE /* XcodeFileReferenceTypeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA798D94AFBD5BEE67578459 /* XcodeFileReferenceTypeTests.m */; };
-		BA798EED43772945E9BD1284 /* XCBuildConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = BA7989BBB424E01D41346F4F /* XCBuildConfiguration.h */; };
-		DD05225716BAF00200D78503 /* XcodeSourceTreeType.h in Headers */ = {isa = PBXBuildFile; fileRef = DD05225516BAF00100D78503 /* XcodeSourceTreeType.h */; };
+		BA798EED43772945E9BD1284 /* XCBuildConfiguration.h in Headers */ = {isa = PBXBuildFile; fileRef = BA7989BBB424E01D41346F4F /* XCBuildConfiguration.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DD05225716BAF00200D78503 /* XcodeSourceTreeType.h in Headers */ = {isa = PBXBuildFile; fileRef = DD05225516BAF00100D78503 /* XcodeSourceTreeType.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD05225816BAF00200D78503 /* XcodeSourceTreeType.m in Sources */ = {isa = PBXBuildFile; fileRef = DD05225616BAF00200D78503 /* XcodeSourceTreeType.m */; };
+		DDD52898197DCDD9004704BC /* XCSubProjectDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C5125E /* XCSubProjectDefinition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DDD52899197DCDE4004704BC /* XCEnumUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BE4B285147E6B610059E455 /* XCEnumUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DDD5289A197DCDE7004704BC /* XCMemoryUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 92E640F015EB65500077FD86 /* XCMemoryUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E94DE11415443AC100C51253 /* HelloWorldLayer.header in Resources */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C51252 /* HelloWorldLayer.header */; };
 		E94DE11415443AC100C51255 /* HelloWorldLayer.impl in Resources */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C51254 /* HelloWorldLayer.impl */; };
 		E94DE11415443AC100C51257 /* HelloBoxy.zip in Resources */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C51256 /* HelloBoxy.zip */; };
@@ -96,7 +99,7 @@
 		E94DE11415443AC100C51260 /* XCSubProjectDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C5125F /* XCSubProjectDefinition.m */; };
 		E94DE11415443AC100C5126E /* XCProject+SubProject.m in Sources */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C5126D /* XCProject+SubProject.m */; };
 		E94DE11415443AC100C5126F /* XCProject+SubProject.m in Sources */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C5126D /* XCProject+SubProject.m */; };
-		E94DE11415443AC100C51271 /* XCProject+SubProject.h in Headers */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C51270 /* XCProject+SubProject.h */; };
+		E94DE11415443AC100C51271 /* XCProject+SubProject.h in Headers */ = {isa = PBXBuildFile; fileRef = E94DE11415443AC100C51270 /* XCProject+SubProject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -437,13 +440,16 @@
 				6B3AD04814F8A3AC00BCFE81 /* XcodeMemberType.h in Headers */,
 				6B65942214F8A56C00F65AEC /* XcodeEditor-Prefix.pch in Headers */,
 				6BE4B285147E6B610059E453 /* XcodeGroupMember.h in Headers */,
+				BA79845028C69EFC6F98AFF5 /* XcodeEditor.h in Headers */,
+				DD05225716BAF00200D78503 /* XcodeSourceTreeType.h in Headers */,
 				6BE4B285147E6B610059E45B /* XCXibDefinition.h in Headers */,
-				6BE4B285147E6B610059E462 /* XCFrameworkDefinition.h in Headers */,
+				DDD52899197DCDE4004704BC /* XCEnumUtils.h in Headers */,
+				DDD5289A197DCDE7004704BC /* XCMemoryUtils.h in Headers */,
+				DDD52898197DCDD9004704BC /* XCSubProjectDefinition.h in Headers */,
 				E94DE11415443AC100C51271 /* XCProject+SubProject.h in Headers */,
 				6BE9748E15AF0B31004472E2 /* OCLogTemplate.h in Headers */,
-				BA79845028C69EFC6F98AFF5 /* XcodeEditor.h in Headers */,
 				BA798EED43772945E9BD1284 /* XCBuildConfiguration.h in Headers */,
-				DD05225716BAF00200D78503 /* XcodeSourceTreeType.h in Headers */,
+				6BE4B285147E6B610059E462 /* XCFrameworkDefinition.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
