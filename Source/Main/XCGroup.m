@@ -526,6 +526,16 @@ children:(NSArray*)children sourceTreeType:(XcodeSourceTreeType)sourceTreeType
     return _pathRelativeToProjectRoot;
 }
 
+- (NSString*)absolutePath
+{
+	if (self.sourceTreeType == XcodeSourceTreeAbsolutePath)
+		return _pathRelativeToParent;
+	else
+	{
+		return [[[_project filePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[self pathRelativeToProjectRoot]];
+	}
+}
+
 /* ================================================== Utility Methods =============================================== */
 - (NSString*)description
 {

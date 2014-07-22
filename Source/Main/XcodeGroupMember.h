@@ -22,6 +22,8 @@
 
 - (NSString*) pathRelativeToProjectRoot;
 
+- (NSString*) absolutePath;
+
 /**
 * Group members can either be other groups (PBXGroup) or source files (PBXFileReference).
 */

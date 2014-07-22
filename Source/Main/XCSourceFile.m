@@ -183,13 +183,18 @@
     return _name;
 }
 
+- (XCGroup*)parentGroup
+{
+	return [_project groupForGroupMemberWithKey:_key];
+}
+
 - (NSString*)parentPath
 {
 	switch ([self sourceTreeType]) {
 		case XcodeSourceTreeRelativeToProject:
 			return @"/";
 		case XcodeSourceTreeRelativeToGroup:
-			return [[_project groupForGroupMemberWithKey:_key] pathRelativeToProjectRoot];
+			return [[self parentGroup] pathRelativeToProjectRoot];
 		default: //Haven't implemented the rest yet, they're all a bit trickier
 			return @"/";
 			break;
@@ -201,6 +206,21 @@
     NSString* parentPath = [self parentPath];
     NSString* result = [parentPath stringByAppendingPathComponent:_path];
     return result;
+}
+
+- (NSString*)absolutePath
+{
+	switch ([self sourceTreeType]) {
+		case XcodeSourceTreeAbsolutePath:
+			return _path;
+		case XcodeSourceTreeRelativeToGroup:
+			return [[[self parentGroup] absolutePath] stringByAppendingPathComponent:_path];
+		case XcodeSourceTreeRelativeToProject:
+			return [[_project projectRootPath] stringByAppendingPathComponent:_path];
+		default:
+			break;
+	}
+	return nil;
 }
 
 /* ============================================================ Utility Methods ========================================================= */

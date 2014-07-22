@@ -98,6 +98,8 @@ __attribute__((__visibility__("default"))) @interface XCProject : NSObject
 
 - (NSString*)filePath;
 
+- (NSString*)projectRootPath;
+
 
 /* ====================================================================================================================================== */
 #pragma mark Groups
