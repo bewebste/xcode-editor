@@ -126,6 +126,10 @@
     [self addBuildSettings:[NSDictionary dictionaryWithObject:setting forKey:key]];
 }
 
+//Not sure exactly what this method should do, was called and declared but never defined. BEW
+- (void)addXCConfigAtPath:(NSString *)path
+{
+}
 
 - (id<NSCopying>)valueForKey:(NSString*)key
 {

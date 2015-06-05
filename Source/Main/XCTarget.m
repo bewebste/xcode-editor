@@ -90,7 +90,7 @@
 }
 
 /* ================================================ Interface Methods =============================================== */
-- (NSArray *) configurations {
+- (NSDictionary *) configurations {
 	if (_configurations == nil) {
 		NSString *buildConfigurationRootSectionKey = [[[_project objects] objectForKey:_key] objectForKey:@"buildConfigurationList"];
 		NSDictionary *buildConfigurationDictionary = [[_project objects] objectForKey:buildConfigurationRootSectionKey];
