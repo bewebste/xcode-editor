@@ -493,7 +493,7 @@
 			name = Tests;
 			productName = Tests;
 			productReference = 6B55223614EA723700494CF3 /* Tests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -501,7 +501,8 @@
 		6BC10157147775A40055CF03 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastTestingUpgradeCheck = 0640;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = EXPANZ;
 			};
 			buildConfigurationList = 6BC1015A147775A40055CF03 /* Build configuration list for PBXProject "xcode-editor" */;
