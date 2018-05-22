@@ -37,19 +37,19 @@
                      children:(NSArray *)children
 {
 
-    return [[XCGroup alloc] initWithProject:project key:key alias:alias path:path children:children memberType:PBXGroupType];
+    return [[XCGroup alloc] initWithProject:project key:key alias:alias path:path children:children memberType:PBXGroupType sourceTreeType:SourceTreeGroup];
 }
 
 + (XCGroup *)groupWithProject:(XCProject *)project key:(NSString *)key alias:(NSString *)alias path:(NSString *)path children:(NSArray<id<XcodeGroupMember>> *)children memberType:(XcodeMemberType)groupType
 {
-    return [[XCGroup alloc]initWithProject:project key:key alias:alias path:path children:children memberType:groupType];
+    return [[XCGroup alloc]initWithProject:project key:key alias:alias path:path children:children memberType:groupType sourceTreeType:SourceTreeGroup];
 }
 
 //-------------------------------------------------------------------------------------------
 #pragma mark - Initialization & Destruction
 //-------------------------------------------------------------------------------------------
 
-- (id)initWithProject:(XCProject *)project key:(NSString *)key alias:(NSString *)alias path:(NSString *)path children:(NSArray<id<XcodeGroupMember>> *)children memberType:(XcodeMemberType)groupType
+- (id)initWithProject:(XCProject *)project key:(NSString *)key alias:(NSString *)alias path:(NSString *)path children:(NSArray<id<XcodeGroupMember>> *)children memberType:(XcodeMemberType)groupType sourceTreeType:(XcodeSourceTreeType)sourceTreeType
 {
     self = [super init];
 
@@ -61,7 +61,7 @@
         _key = [key copy];
         _alias = [alias copy];
         _pathRelativeToParent = [path copy];
-
+		_sourceTreeType = sourceTreeType;
         _children = [children mutableCopy];
         if (!_children) {
             _children = [[NSMutableArray alloc] init];
@@ -75,7 +75,7 @@
 - (id)initWithProject:(XCProject *)project key:(NSString *)key alias:(NSString *)alias path:(NSString *)path
              children:(NSArray *)children
 {
-    return [self initWithProject:project key:key alias:alias path:path children:children memberType:PBXGroupType];
+    return [self initWithProject:project key:key alias:alias path:path children:children memberType:PBXGroupType sourceTreeType:SourceTreeRelativeToProject];
 }
 
 //-------------------------------------------------------------------------------------------
@@ -310,7 +310,7 @@
         }
     }
     
-    XCGroup *group = [[XCGroup alloc] initWithProject:_project key:groupKey alias:alias path:nil children:nil memberType:type];
+    XCGroup *group = [[XCGroup alloc] initWithProject:_project key:groupKey alias:alias path:nil children:nil memberType:type sourceTreeType:SourceTreeRelativeToProject];
     NSDictionary *groupDict = [group asDictionary];
     
     [_project objects][groupKey] = groupDict;
@@ -593,22 +593,41 @@
 - (NSString *)pathRelativeToProjectRoot
 {
     if (_pathRelativeToProjectRoot == nil) {
-        NSMutableArray *pathComponents = [[NSMutableArray alloc] init];
-        XCGroup *group = nil;
-        NSString *key = [_key copy];
-
-        while ((group = [_project groupForGroupMemberWithKey:key]) != nil && [group pathRelativeToParent] != nil) {
-            [pathComponents addObject:[group pathRelativeToParent]];
-            key = [[group key] copy];
-        }
-
-        NSMutableString *fullPath = [[NSMutableString alloc] init];
-        for (NSInteger i = (NSInteger) [pathComponents count] - 1; i >= 0; i--) {
-            [fullPath appendFormat:@"%@/", pathComponents[i]];
-        }
-        _pathRelativeToProjectRoot = [[fullPath stringByAppendingPathComponent:_pathRelativeToParent] copy];
+		if (self.sourceTreeType == SourceTreeRelativeToProject)
+			_pathRelativeToProjectRoot = [_pathRelativeToParent copy];
+		else
+		{
+			NSMutableArray* pathComponents = [[NSMutableArray alloc] init];
+			XCGroup* group = nil;
+			NSString* key = [_key copy];
+			
+			while ((group = [_project groupForGroupMemberWithKey:key]) != nil)
+			{
+				if ([group pathRelativeToParent] != nil)
+					[pathComponents addObject:[group pathRelativeToParent]];
+				id old = key;
+				key = [[group key] copy];
+			}
+			
+			NSMutableString* fullPath = [[NSMutableString alloc] init];
+			for (NSInteger i = (NSInteger) [pathComponents count] - 1; i >= 0; i--)
+			{
+				[fullPath appendFormat:@"%@/", [pathComponents objectAtIndex:i]];
+			}
+			_pathRelativeToProjectRoot = [[fullPath stringByAppendingPathComponent:_pathRelativeToParent] copy];
+		}
     }
     return _pathRelativeToProjectRoot;
+}
+
+- (NSString*)absolutePath
+{
+	if (self.sourceTreeType == SourceTreeAbsolutePath)
+		return _pathRelativeToParent;
+	else
+	{
+		return [[[_project filePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[self pathRelativeToProjectRoot]];
+	}
 }
 
 //-------------------------------------------------------------------------------------------

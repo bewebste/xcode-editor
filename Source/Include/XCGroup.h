@@ -14,6 +14,7 @@
 #import "XcodeGroupMember.h"
 #import "XcodeSourceFileType.h"
 #import "XCBuildFile.h"
+#import "XcodeSourceTreeType.h"
 
 @class XCProject;
 @class XCClassDefinition;
@@ -77,6 +78,8 @@
 */
 @property(nonatomic, strong, readonly) NSMutableArray<id<XcodeGroupMember>>* children;
 
+@property (readonly) XcodeSourceTreeType sourceTreeType;
+@property (readonly) NSString *absolutePath;
 
 #pragma mark Initializers
 
@@ -86,7 +89,7 @@
 
 - (id)initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray<id<XcodeGroupMember>>*)children;
 
-- (id)initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray<id<XcodeGroupMember>>*)children memberType:(XcodeMemberType)groupType;
+- (id)initWithProject:(XCProject*)project key:(NSString*)key alias:(NSString*)alias path:(NSString*)path children:(NSArray<id<XcodeGroupMember>>*)children memberType:(XcodeMemberType)groupType sourceTreeType:(XcodeSourceTreeType)sourceTreeType;
 
 #pragma mark Parent group
 

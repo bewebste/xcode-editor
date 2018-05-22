@@ -164,6 +164,11 @@ NSString *const XCProjectNotFoundException;
     return _filePath;
 }
 
+- (NSString*)projectRootPath
+{
+	return [_filePath stringByDeletingLastPathComponent];
+}
+
 //-------------------------------------------------------------------------------------------
 #pragma mark Groups
 //-------------------------------------------------------------------------------------------

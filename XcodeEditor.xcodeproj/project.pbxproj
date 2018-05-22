@@ -17,7 +17,6 @@
 		6BE8FDB81C01C190001EF5B3 /* XcodeEditor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE8FDAD1C01C190001EF5B3 /* XcodeEditor.framework */; };
 		BA7980BF50D23B7BEF646CEB /* XCProjectBuildConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79825B6294137CFC2609B9 /* XCProjectBuildConfig.m */; };
 		BA7980C2CFE1088A485DEF43 /* XCTestResourceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79870D516A14BE1922F109 /* XCTestResourceUtils.m */; };
-		BA7980F352BBC94B37A85B50 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA798ED8B847C8BEE5A56CF4 /* InfoPlist.strings */; };
 		BA7981FCC7DFB418DFD25C9D /* XCSourceFileDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7982102090AE1FFBBA5C63 /* XCSourceFileDefinition.m */; };
 		BA79823125F335EF8C4A53CA /* XCSubProjectDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7987EBAFEB84C72B4C63D6 /* XCSubProjectDefinition.m */; };
 		BA798280BE8DA3E2AD97A04A /* XCGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = BA79842F32FBBA0B05247673 /* XCGroup.m */; };
@@ -702,7 +701,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA7980F352BBC94B37A85B50 /* InfoPlist.strings in Resources */,
 				BA7988A0432093FC3C9B81AD /* InfoPlist.strings in Resources */,
 				BA798AC943D831E9EF74B1C8 /* XcodeEditor-Info.plist in Resources */,
 			);

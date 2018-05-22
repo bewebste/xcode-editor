@@ -14,7 +14,11 @@
 typedef enum
 {
     SourceTreeSDKRoot,
-    SourceTreeGroup
+    SourceTreeGroup,
+	SourceTreeAbsolutePath,
+	SourceTreeRelativeToProject,
+	SourceTreeRelativeToDeveloperDirectory,
+	SourceTreeRelativeToBuildProducts
 } XcodeSourceTreeType;
 
 @interface NSString (XcodeSourceTreeTypeExtensions)

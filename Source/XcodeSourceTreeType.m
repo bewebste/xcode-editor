@@ -13,6 +13,11 @@
 
 static NSString* const kPBXSourceTreeSKRoot= @"SDKROOT";
 static NSString* const kPBXSourceTreeGroup = @"<group>";
+static NSString* const kPBXSourceTreeAbsolutePath = @"<absolute>";
+static NSString* const kPBXSourceTreeRelativeToProject = @"SOURCE_ROOT";
+static NSString* const kPBXSourceTreeRelativeToDeveloperDirectory = @"DEVELOPER_DIR";
+static NSString* const kPBXSourceTreeRelativeToBuildProducts = @"BUILT_PRODUCTS_DIR";
+
 
 static NSDictionary* DictionaryWithProjectSourceTreeTypesAsStrings() {
     // This is the most vital operation on adding 500+ files
@@ -27,6 +32,10 @@ static NSDictionary* DictionaryWithProjectSourceTreeTypesAsStrings() {
         _projectNodeTypesAsStrings = @{
                                        kPBXSourceTreeSKRoot              : @(SourceTreeSDKRoot),
                                        kPBXSourceTreeGroup            : @(SourceTreeGroup),
+									   kPBXSourceTreeAbsolutePath : @(SourceTreeAbsolutePath),
+									   kPBXSourceTreeRelativeToProject: @(SourceTreeRelativeToProject),
+									   kPBXSourceTreeRelativeToDeveloperDirectory : @(SourceTreeRelativeToDeveloperDirectory),
+									   kPBXSourceTreeRelativeToBuildProducts: @(SourceTreeRelativeToBuildProducts)
                                        };
     });
     return _projectNodeTypesAsStrings;

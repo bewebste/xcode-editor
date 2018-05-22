@@ -41,6 +41,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong, readonly) NSString *sourceTree;
 @property (nonatomic, strong) NSString *path;
+@property (readonly) NSString *absolutePath;
 
 + (XCSourceFile *)sourceFileWithProject:(XCProject *)project key:(NSString *)key type:(XcodeSourceFileType)type
                                    name:(NSString *)name sourceTree:(NSString *)tree path:(NSString *)path;

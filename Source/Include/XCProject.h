@@ -99,7 +99,7 @@
 - (NSArray<XCSourceFile*>*)imagePNGFiles;
 
 - (NSString*)filePath;
-
+- (NSString*)projectRootPath;
 
 //-------------------------------------------------------------------------------------------
 #pragma mark Groups

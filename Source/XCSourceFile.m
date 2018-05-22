@@ -16,6 +16,7 @@
 #import "XCKeyBuilder.h"
 #import "XCGroup.h"
 #import "XCTarget.h"
+#import "XcodeSourceTreeType.h"
 
 @implementation XCSourceFile
 
@@ -94,6 +95,26 @@
     _path = [path copy];
     
     [self setValue:path forProjectItemPropertyWithKey:@"path"];
+}
+
+- (XcodeSourceTreeType)sourceTreeType
+{
+	return [_sourceTree xce_asSourceTreeType];
+}
+
+- (NSString*)absolutePath
+{
+	switch ([self sourceTreeType]) {
+		case SourceTreeAbsolutePath:
+			return _path;
+		case SourceTreeGroup:
+			return [[[self parentGroup] absolutePath] stringByAppendingPathComponent:_path];
+		case SourceTreeRelativeToProject:
+			return [[_project projectRootPath] stringByAppendingPathComponent:_path];
+		default:
+			break;
+	}
+	return nil;
 }
 
 - (BOOL)isBuildFile
@@ -262,13 +283,30 @@
     return _name;
 }
 
-- (NSString *)pathRelativeToProjectRoot
+- (XCGroup*)parentGroup
 {
-    NSString *parentPath = [[_project groupForGroupMemberWithKey:_key] pathRelativeToProjectRoot];
-    NSString *result = [parentPath stringByAppendingPathComponent:_name];
-    return result;
+	return [_project groupForGroupMemberWithKey:_key];
 }
 
+- (NSString*)parentPath
+{
+	switch ([self sourceTreeType]) {
+		case SourceTreeRelativeToProject:
+			return @"/";
+		case SourceTreeGroup:
+			return [[self parentGroup] pathRelativeToProjectRoot];
+		default: //Haven't implemented the rest yet, they're all a bit trickier
+			return @"/";
+			break;
+	}
+}
+
+- (NSString*)pathRelativeToProjectRoot
+{
+	NSString* parentPath = [self parentPath];
+	NSString* result = [parentPath stringByAppendingPathComponent:_path];
+	return result;
+}
 //-------------------------------------------------------------------------------------------
 #pragma mark - Utility Methods
 
