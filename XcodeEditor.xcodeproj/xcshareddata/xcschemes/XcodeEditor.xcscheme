@@ -14,70 +14,80 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B55223514EA723700494CF3"
-               BuildableName = "Tests.octest"
-               BlueprintName = "Tests"
-               ReferencedContainer = "container:xcode-editor.xcodeproj">
+               BlueprintIdentifier = "6BE8FDAC1C01C190001EF5B3"
+               BuildableName = "XcodeEditor.framework"
+               BlueprintName = "XcodeEditor"
+               ReferencedContainer = "container:XcodeEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6B55223514EA723700494CF3"
-               BuildableName = "Tests.octest"
-               BlueprintName = "Tests"
-               ReferencedContainer = "container:xcode-editor.xcodeproj">
+               BlueprintIdentifier = "6BE8FDB61C01C190001EF5B3"
+               BuildableName = "XcodeEditorTests.xctest"
+               BlueprintName = "XcodeEditorTests"
+               ReferencedContainer = "container:XcodeEditor.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6BE8FDAC1C01C190001EF5B3"
+            BuildableName = "XcodeEditor.framework"
+            BlueprintName = "XcodeEditor"
+            ReferencedContainer = "container:XcodeEditor.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <AdditionalOptions>
+      </AdditionalOptions>
    </TestAction>
    <LaunchAction
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6BE8FDAC1C01C190001EF5B3"
+            BuildableName = "XcodeEditor.framework"
+            BlueprintName = "XcodeEditor"
+            ReferencedContainer = "container:XcodeEditor.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
-         <AdditionalOption
-            key = "MallocScribble"
-            value = ""
-            isEnabled = "YES">
-         </AdditionalOption>
-         <AdditionalOption
-            key = "DYLD_INSERT_LIBRARIES"
-            value = "/usr/lib/libgmalloc.dylib"
-            isEnabled = "YES">
-         </AdditionalOption>
-         <AdditionalOption
-            key = "MallocGuardEdges"
-            value = ""
-            isEnabled = "YES">
-         </AdditionalOption>
-         <AdditionalOption
-            key = "NSZombieEnabled"
-            value = "YES"
-            isEnabled = "YES">
-         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
+      buildConfiguration = "Release"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "6BE8FDAC1C01C190001EF5B3"
+            BuildableName = "XcodeEditor.framework"
+            BlueprintName = "XcodeEditor"
+            ReferencedContainer = "container:XcodeEditor.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
